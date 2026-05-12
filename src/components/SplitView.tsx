@@ -60,7 +60,7 @@ function LineCell({ entry }: { entry: LineEntry }) {
       sx={{
         display: 'flex',
         fontFamily: 'mono',
-        fontSize: 1,
+        fontSize: 2,
         lineHeight: '20px',
         bg: bgColor[entry.type],
         minHeight: '20px',
@@ -112,7 +112,7 @@ export default function SplitView({ changes }: Props) {
             borderBottomColor: 'border.muted',
           }}
         >
-          <Text sx={{ fontSize: 1, fontWeight: 'semibold', color: 'fg.muted' }}>Original</Text>
+          <Text sx={{ fontSize: 2, fontWeight: 'semibold', color: 'fg.muted' }}>Original</Text>
         </Box>
         {left.map((entry, i) => (
           <LineCell key={i} entry={entry} />
@@ -129,7 +129,7 @@ export default function SplitView({ changes }: Props) {
             borderBottomColor: 'border.muted',
           }}
         >
-          <Text sx={{ fontSize: 1, fontWeight: 'semibold', color: 'fg.muted' }}>Modified</Text>
+          <Text sx={{ fontSize: 2, fontWeight: 'semibold', color: 'fg.muted' }}>Modified</Text>
         </Box>
         {right.map((entry, i) => (
           <LineCell key={i} entry={entry} />

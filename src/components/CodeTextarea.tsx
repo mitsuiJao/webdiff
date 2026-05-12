@@ -19,13 +19,14 @@ export default function CodeTextarea({ label, value, placeholder, onChange }: Pr
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Text as="label" sx={{ fontSize: 2, fontWeight: 'semibold', color: 'fg.default', mr: 'auto' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Text as="label" sx={{ fontSize: 3, fontWeight: 'semibold', color: 'fg.default', mr: 'auto' }}>
           {label}
         </Text>
         <IconButton
-          aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
+          aria-label="Copy to clipboard"
+          unsafeDisableTooltip
           icon={copied ? CheckIcon : CopyIcon}
           variant="invisible"
           onClick={handleCopy}
@@ -58,7 +59,7 @@ export default function CodeTextarea({ label, value, placeholder, onChange }: Pr
             width: '100%',
             resize: 'vertical',
             fontFamily: 'ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace',
-            fontSize: '14px',
+            fontSize: '15px',
             lineHeight: '1.6',
             p: 3,
             boxSizing: 'border-box',

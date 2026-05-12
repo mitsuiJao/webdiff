@@ -37,7 +37,7 @@ export default function DiffViewer({ changes }: Props) {
           borderBottomColor: 'border.default',
         }}
       >
-        <Text sx={{ fontSize: 2, fontWeight: 'semibold', color: 'fg.default' }}>
+        <Text sx={{ fontSize: 3, fontWeight: 'semibold', color: 'fg.default' }}>
           Diff Results
         </Text>
         <SegmentedControl
