@@ -112,7 +112,7 @@ export default function SplitView({ changes }: Props) {
             borderBottomColor: 'border.muted',
           }}
         >
-          <Text sx={{ fontSize: 2, fontWeight: 'semibold', color: 'fg.muted' }}>Original</Text>
+          <Text sx={{ fontSize: 2, fontWeight: 'semibold', color: 'fg.muted' }}>比較元</Text>
         </Box>
         {left.map((entry, i) => (
           <LineCell key={i} entry={entry} />
@@ -129,7 +129,7 @@ export default function SplitView({ changes }: Props) {
             borderBottomColor: 'border.muted',
           }}
         >
-          <Text sx={{ fontSize: 2, fontWeight: 'semibold', color: 'fg.muted' }}>Modified</Text>
+          <Text sx={{ fontSize: 2, fontWeight: 'semibold', color: 'fg.muted' }}>比較後</Text>
         </Box>
         {right.map((entry, i) => (
           <LineCell key={i} entry={entry} />

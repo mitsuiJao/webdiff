@@ -4,6 +4,7 @@ import {
   BaseStyles,
   Box,
   Button,
+  Label,
   IconButton,
   Heading,
   Text,
@@ -42,7 +43,8 @@ export default function App() {
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 3,
+                  gap: 2,
+                  flexWrap: 'wrap',
                   py: 3,
                   px: 4,
                   borderBottomWidth: 1,
@@ -61,7 +63,12 @@ export default function App() {
                 <Heading as="h1" sx={{ fontSize: 5, fontWeight: 'semibold', color: 'fg.default' }}>
                   WebDiff
                 </Heading>
-                <Text sx={{ color: 'fg.muted', fontSize: 2, ml: 1 }}>Text Comparison Tool</Text>
+                <Label variant="accent" sx={{ mr: 1 }}>
+                  無料
+                </Label>
+                <Text sx={{ color: 'fg.muted', fontSize: 2 }}>
+                  日本語対応テキスト差分比較ツール
+                </Text>
                 <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 2 }}>
                   <IconButton
                     aria-label="View source on GitHub"
@@ -91,8 +98,31 @@ export default function App() {
             </PageLayout.Header>
 
             <PageLayout.Content>
-              <Box sx={{ p: 4 }}>
+              <Box as="main" sx={{ p: 4, maxWidth: 1280, mx: 'auto' }}>
                 <Box
+                  as="section"
+                  sx={{
+                    mb: 4,
+                    p: [3, 4],
+                    borderWidth: 1,
+                    borderStyle: 'solid',
+                    borderColor: 'border.default',
+                    borderRadius: 3,
+                    background:
+                      'linear-gradient(135deg, var(--bgColor-accent-emphasis) 0%, var(--bgColor-accent-muted) 100%)',
+                  }}
+                >
+                  <Heading as="h2" sx={{ fontSize: [3, 4], color: 'fg.onEmphasis', mb: 2 }}>
+                    文章・コードの変更点を、すばやく比較
+                  </Heading>
+                  <Text sx={{ color: 'fg.onEmphasis', fontSize: 2, lineHeight: 1.6 }}>
+                    WebDiffは、2つのテキストを貼り付けるだけで追加・削除・変更箇所をわかりやすく確認できる、
+                    日本語向けの無料差分比較アプリです。
+                  </Text>
+                </Box>
+
+                <Box
+                  as="section"
                   sx={{
                     display: 'grid',
                     gridTemplateColumns: ['1fr', '1fr', '1fr 1fr'],
@@ -101,26 +131,36 @@ export default function App() {
                   }}
                 >
                   <CodeTextarea
-                    label="Original"
+                    label="比較元テキスト"
                     value={original}
-                    placeholder="元のテキストをここに貼り付けてください..."
+                    placeholder="比較元の文章やコードを貼り付けてください"
                     onChange={setOriginal}
                   />
                   <CodeTextarea
-                    label="Modified"
+                    label="比較後テキスト"
                     value={modified}
-                    placeholder="変更後のテキストをここに貼り付けてください..."
+                    placeholder="比較後の文章やコードを貼り付けてください"
                     onChange={setModified}
                   />
                 </Box>
 
                 <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
                   <Button variant="primary" onClick={handleCompare} size="large">
-                    Compare
+                    比較する
                   </Button>
                   <Button variant="default" onClick={handleClear} size="large">
-                    Clear
+                    クリア
                   </Button>
+                </Box>
+
+                <Box as="section" sx={{ mb: 4 }}>
+                  <Heading as="h2" sx={{ fontSize: 3, mb: 2 }}>
+                    使い方
+                  </Heading>
+                  <Text as="p" sx={{ color: 'fg.muted', lineHeight: 1.7 }}>
+                    左に比較元、右に比較後のテキストを入力して「比較する」を押すと、差分結果が表示されます。
+                    Split表示とUnified表示を切り替えて、レビュー目的に合わせて確認できます。
+                  </Text>
                 </Box>
 
                 {diffResult !== null && <DiffViewer changes={diffResult} />}

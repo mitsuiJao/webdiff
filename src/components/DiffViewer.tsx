@@ -38,14 +38,14 @@ export default function DiffViewer({ changes }: Props) {
         }}
       >
         <Text sx={{ fontSize: 3, fontWeight: 'semibold', color: 'fg.default' }}>
-          Diff Results
+          比較結果
         </Text>
         <SegmentedControl
-          aria-label="View mode"
+          aria-label="表示モード"
           onChange={(i) => setViewMode(i === 0 ? 'split' : 'unified')}
         >
-          <SegmentedControl.Button selected={viewMode === 'split'}>Split</SegmentedControl.Button>
-          <SegmentedControl.Button selected={viewMode === 'unified'}>Unified</SegmentedControl.Button>
+          <SegmentedControl.Button selected={viewMode === 'split'}>左右表示</SegmentedControl.Button>
+          <SegmentedControl.Button selected={viewMode === 'unified'}>統合表示</SegmentedControl.Button>
         </SegmentedControl>
       </Box>
 
@@ -63,8 +63,8 @@ export default function DiffViewer({ changes }: Props) {
           <Box sx={{ color: 'success.fg' }}>
             <CheckCircleFillIcon size={32} />
           </Box>
-          <Heading as="h3" sx={{ fontSize: 2 }}>No differences found</Heading>
-          <Text sx={{ fontSize: 1 }}>The two texts are identical.</Text>
+          <Heading as="h3" sx={{ fontSize: 2 }}>差分は見つかりませんでした</Heading>
+          <Text sx={{ fontSize: 1 }}>2つのテキストは同一です。</Text>
         </Box>
       ) : viewMode === 'split' ? (
         <SplitView changes={changes} />
