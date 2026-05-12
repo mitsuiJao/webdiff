@@ -63,7 +63,7 @@ export default function App() {
                 <Heading as="h1" sx={{ fontSize: 5, fontWeight: 'semibold', color: 'fg.default' }}>
                   WebDiff
                 </Heading>
-                <Label variant="accent" sx={{ mr: 1 }}>
+                <Label variant="accent" sx={{ mr: 1 }} aria-label="このアプリは無料です">
                   無料
                 </Label>
                 <Text sx={{ color: 'fg.muted', fontSize: 2 }}>
@@ -108,8 +108,7 @@ export default function App() {
                     borderStyle: 'solid',
                     borderColor: 'border.default',
                     borderRadius: 3,
-                    background:
-                      'linear-gradient(135deg, var(--bgColor-accent-emphasis) 0%, var(--bgColor-accent-muted) 100%)',
+                    bg: 'accent.emphasis',
                   }}
                 >
                   <Heading as="h2" sx={{ fontSize: [3, 4], color: 'fg.onEmphasis', mb: 2 }}>
