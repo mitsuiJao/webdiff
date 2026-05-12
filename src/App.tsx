@@ -4,7 +4,6 @@ import {
   BaseStyles,
   Box,
   Button,
-  Label,
   IconButton,
   Heading,
   Text,
@@ -63,9 +62,6 @@ export default function App() {
                 <Heading as="h1" sx={{ fontSize: 5, fontWeight: 'semibold', color: 'fg.default' }}>
                   WebDiff
                 </Heading>
-                <Label variant="accent" sx={{ mr: 1 }}>
-                  無料
-                </Label>
                 <Text sx={{ color: 'fg.muted', fontSize: 2 }}>
                   日本語対応テキスト差分比較ツール
                 </Text>
@@ -98,28 +94,7 @@ export default function App() {
             </PageLayout.Header>
 
             <PageLayout.Content>
-              <Box as="main" sx={{ p: 4, maxWidth: 1280, mx: 'auto' }}>
-                <Box
-                  as="section"
-                  sx={{
-                    mb: 4,
-                    p: [3, 4],
-                    borderWidth: 1,
-                    borderStyle: 'solid',
-                    borderColor: 'border.default',
-                    borderRadius: 3,
-                    bg: 'accent.emphasis',
-                  }}
-                >
-                  <Heading as="h2" sx={{ fontSize: [3, 4], color: 'fg.onEmphasis', mb: 2 }}>
-                    文章・コードの変更点を、すばやく比較
-                  </Heading>
-                  <Text sx={{ color: 'fg.onEmphasis', fontSize: 2, lineHeight: 1.6 }}>
-                    WebDiffは、2つのテキストを貼り付けるだけで追加・削除・変更箇所をわかりやすく確認できる、
-                    日本語向けの無料差分比較アプリです。
-                  </Text>
-                </Box>
-
+              <Box as="main" sx={{ p: 4 }}>
                 <Box
                   as="section"
                   sx={{
@@ -150,16 +125,6 @@ export default function App() {
                   <Button variant="default" onClick={handleClear} size="large">
                     クリア
                   </Button>
-                </Box>
-
-                <Box as="section" sx={{ mb: 4 }}>
-                  <Heading as="h2" sx={{ fontSize: 3, mb: 2 }}>
-                    使い方
-                  </Heading>
-                  <Text as="p" sx={{ color: 'fg.muted', lineHeight: 1.7 }}>
-                    左に比較元、右に比較後のテキストを入力して「比較する」を押すと、差分結果が表示されます。
-                    左右表示と統合表示を切り替えて、レビュー目的に合わせて確認できます。
-                  </Text>
                 </Box>
 
                 {diffResult !== null && <DiffViewer changes={diffResult} />}
