@@ -12,22 +12,9 @@ import {
 import { SunIcon, MoonIcon } from '@primer/octicons-react'
 import { diffLines, type Change } from 'diff'
 import DiffViewer from './components/DiffViewer'
+import CodeTextarea from './components/CodeTextarea'
 
 type ColorMode = 'day' | 'night'
-
-const codeTextarea: React.CSSProperties = {
-  width: '100%',
-  resize: 'vertical',
-  fontFamily: 'ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace',
-  fontSize: '13px',
-  lineHeight: '1.6',
-  padding: '12px',
-  boxSizing: 'border-box',
-  border: '1px solid',
-  borderRadius: '6px',
-  outline: 'none',
-  background: 'transparent',
-}
 
 export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>('day')
@@ -96,47 +83,18 @@ export default function App() {
                     mb: 3,
                   }}
                 >
-                  {(['Original', 'Modified'] as const).map((label) => {
-                    const isOriginal = label === 'Original'
-                    return (
-                      <Box key={label} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                        <Text as="label" sx={{ fontSize: 1, fontWeight: 'semibold', color: 'fg.default' }}>
-                          {label}
-                        </Text>
-                        <Box
-                          sx={{
-                            borderWidth: 1,
-                            borderStyle: 'solid',
-                            borderColor: 'border.default',
-                            borderRadius: 2,
-                            bg: 'canvas.subtle',
-                            overflow: 'hidden',
-                            '&:focus-within': {
-                              borderColor: 'accent.fg',
-                              boxShadow: 'inset 0 0 0 1px var(--color-accent-fg)',
-                            },
-                          }}
-                        >
-                          <Box
-                            as="textarea"
-                            value={isOriginal ? original : modified}
-                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                              isOriginal ? setOriginal(e.target.value) : setModified(e.target.value)
-                            }
-                            placeholder={isOriginal ? '元のテキストをここに貼り付けてください...' : '変更後のテキストをここに貼り付けてください...'}
-                            rows={14}
-                            aria-label={`${label} text`}
-                            sx={{
-                              ...codeTextarea,
-                              color: 'fg.default',
-                              borderColor: 'transparent',
-                              '::placeholder': { color: 'fg.subtle' },
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    )
-                  })}
+                  <CodeTextarea
+                    label="Original"
+                    value={original}
+                    placeholder="元のテキストをここに貼り付けてください..."
+                    onChange={setOriginal}
+                  />
+                  <CodeTextarea
+                    label="Modified"
+                    value={modified}
+                    placeholder="変更後のテキストをここに貼り付けてください..."
+                    onChange={setModified}
+                  />
                 </Box>
 
                 <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
