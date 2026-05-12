@@ -62,7 +62,7 @@ export default function App() {
                 <Heading as="h1" sx={{ fontSize: 5, fontWeight: 'semibold', color: 'fg.default' }}>
                   WebDiff
                 </Heading>
-                <Text sx={{ color: 'fg.muted', fontSize: 2 }}>
+                <Text as="p" sx={{ color: 'fg.muted', fontSize: 2 }}>
                   日本語対応テキスト差分比較ツール
                 </Text>
                 <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 2 }}>
