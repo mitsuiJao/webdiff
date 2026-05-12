@@ -69,7 +69,7 @@ export default function UnifiedView({ changes }: Props) {
           sx={{
             display: 'flex',
             fontFamily: 'mono',
-            fontSize: 0,
+            fontSize: 1,
             lineHeight: '20px',
             bg: rowBg[entry.type],
             minHeight: '20px',
