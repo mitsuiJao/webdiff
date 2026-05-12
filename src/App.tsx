@@ -115,10 +115,18 @@ export default function App() {
                 </Box>
 
                 <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
-                  <Button variant="primary" onClick={handleCompare} size="large" sx={{ fontSize: 3 }}>
+                  <Button
+                    variant="primary"
+                    onClick={handleCompare}
+                    sx={{ fontSize: 1, px: 5, py: '10px', letterSpacing: '0.02em' }}
+                  >
                     Compare
                   </Button>
-                  <Button variant="default" onClick={handleClear} size="large" sx={{ fontSize: 3 }}>
+                  <Button
+                    variant="default"
+                    onClick={handleClear}
+                    sx={{ fontSize: 1, px: 4, py: '10px', letterSpacing: '0.02em' }}
+                  >
                     Clear
                   </Button>
                 </Box>
