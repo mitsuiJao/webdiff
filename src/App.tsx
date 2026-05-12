@@ -37,6 +37,7 @@ export default function App() {
   return (
     <ThemeProvider colorMode={colorMode}>
       <BaseStyles>
+        <Box sx={{ bg: 'canvas.default', minHeight: '100vh' }}>
         <PageLayout>
           <PageLayout.Header>
             <Box
@@ -136,6 +137,7 @@ export default function App() {
             </Box>
           </PageLayout.Content>
         </PageLayout>
+        </Box>
       </BaseStyles>
     </ThemeProvider>
   )
