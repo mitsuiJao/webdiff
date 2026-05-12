@@ -159,7 +159,7 @@ export default function App() {
                   </Heading>
                   <Text as="p" sx={{ color: 'fg.muted', lineHeight: 1.7 }}>
                     左に比較元、右に比較後のテキストを入力して「比較する」を押すと、差分結果が表示されます。
-                    Split表示とUnified表示を切り替えて、レビュー目的に合わせて確認できます。
+                    左右表示と統合表示を切り替えて、レビュー目的に合わせて確認できます。
                   </Text>
                 </Box>
 
