@@ -38,7 +38,9 @@ export default function App() {
   }
 
   useEffect(() => {
-    window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, colorMode)
+    try {
+      window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, colorMode)
+    } catch {}
   }, [colorMode])
 
   return (
