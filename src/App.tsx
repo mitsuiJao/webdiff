@@ -14,14 +14,17 @@ import { diffLines, type Change } from 'diff'
 import DiffViewer from './components/DiffViewer'
 import CodeTextarea from './components/CodeTextarea'
 
-type ColorMode = 'day' | 'night'
+const COLOR_MODES = ['day', 'night'] as const
+type ColorMode = (typeof COLOR_MODES)[number]
 const COLOR_MODE_STORAGE_KEY = 'webdiff-color-mode'
+const isColorMode = (value: string | null): value is ColorMode =>
+  value !== null && COLOR_MODES.includes(value as ColorMode)
 
 export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>(() => {
     try {
       const storedMode = window.localStorage.getItem(COLOR_MODE_STORAGE_KEY)
-      return storedMode === 'day' || storedMode === 'night' ? storedMode : 'day'
+      return isColorMode(storedMode) ? storedMode : 'day'
     } catch {
       return 'day'
     }
