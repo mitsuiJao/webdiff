@@ -19,9 +19,12 @@ const COLOR_MODE_STORAGE_KEY = 'webdiff-color-mode'
 
 export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>(() => {
-    if (typeof window === 'undefined') return 'day'
-    const storedMode = window.localStorage.getItem(COLOR_MODE_STORAGE_KEY)
-    return storedMode === 'night' ? 'night' : 'day'
+    try {
+      const storedMode = window.localStorage.getItem(COLOR_MODE_STORAGE_KEY)
+      return storedMode === 'night' ? 'night' : 'day'
+    } catch {
+      return 'day'
+    }
   })
   const [original, setOriginal] = useState('')
   const [modified, setModified] = useState('')
@@ -40,7 +43,9 @@ export default function App() {
   useEffect(() => {
     try {
       window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, colorMode)
-    } catch {}
+    } catch (error) {
+      console.warn('Failed to save theme preference:', error)
+    }
   }, [colorMode])
 
   return (
