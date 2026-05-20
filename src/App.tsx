@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ThemeProvider,
   BaseStyles,
@@ -15,9 +15,14 @@ import DiffViewer from './components/DiffViewer'
 import CodeTextarea from './components/CodeTextarea'
 
 type ColorMode = 'day' | 'night'
+const COLOR_MODE_STORAGE_KEY = 'webdiff-color-mode'
 
 export default function App() {
-  const [colorMode, setColorMode] = useState<ColorMode>('day')
+  const [colorMode, setColorMode] = useState<ColorMode>(() => {
+    if (typeof window === 'undefined') return 'day'
+    const storedMode = window.localStorage.getItem(COLOR_MODE_STORAGE_KEY)
+    return storedMode === 'night' ? 'night' : 'day'
+  })
   const [original, setOriginal] = useState('')
   const [modified, setModified] = useState('')
   const [diffResult, setDiffResult] = useState<Change[] | null>(null)
@@ -31,6 +36,10 @@ export default function App() {
     setModified('')
     setDiffResult(null)
   }
+
+  useEffect(() => {
+    window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, colorMode)
+  }, [colorMode])
 
   return (
     <ThemeProvider colorMode={colorMode}>
@@ -83,7 +92,7 @@ export default function App() {
                     unsafeDisableTooltip
                     icon={() => colorMode === 'day' ? <MoonIcon size={28} /> : <SunIcon size={28} />}
                     variant="invisible"
-                    onClick={() => setColorMode(colorMode === 'day' ? 'night' : 'day')}
+                    onClick={() => setColorMode((prev) => prev === 'day' ? 'night' : 'day')}
                     sx={{ p: 1 }}
                   />
                 </Box>
