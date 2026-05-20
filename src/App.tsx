@@ -42,6 +42,9 @@ export default function App() {
     setModified('')
     setDiffResult(null)
   }
+  const toggleColorMode = () => {
+    setColorMode((prev) => prev === 'day' ? 'night' : 'day')
+  }
 
   useEffect(() => {
     try {
@@ -102,7 +105,7 @@ export default function App() {
                     unsafeDisableTooltip
                     icon={() => colorMode === 'day' ? <MoonIcon size={28} /> : <SunIcon size={28} />}
                     variant="invisible"
-                    onClick={() => setColorMode((prev) => prev === 'day' ? 'night' : 'day')}
+                    onClick={toggleColorMode}
                     sx={{ p: 1 }}
                   />
                 </Box>
