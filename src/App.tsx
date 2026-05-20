@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ThemeProvider,
   BaseStyles,
@@ -14,10 +14,21 @@ import { diffLines, type Change } from 'diff'
 import DiffViewer from './components/DiffViewer'
 import CodeTextarea from './components/CodeTextarea'
 
-type ColorMode = 'day' | 'night'
+const COLOR_MODES = ['day', 'night'] as const
+type ColorMode = (typeof COLOR_MODES)[number]
+const COLOR_MODE_STORAGE_KEY = 'webdiff-color-mode'
+const isColorMode = (value: string | null): value is ColorMode =>
+  value !== null && COLOR_MODES.includes(value as ColorMode)
 
 export default function App() {
-  const [colorMode, setColorMode] = useState<ColorMode>('day')
+  const [colorMode, setColorMode] = useState<ColorMode>(() => {
+    try {
+      const storedMode = window.localStorage.getItem(COLOR_MODE_STORAGE_KEY)
+      return isColorMode(storedMode) ? storedMode : 'day'
+    } catch {
+      return 'day'
+    }
+  })
   const [original, setOriginal] = useState('')
   const [modified, setModified] = useState('')
   const [diffResult, setDiffResult] = useState<Change[] | null>(null)
@@ -31,6 +42,17 @@ export default function App() {
     setModified('')
     setDiffResult(null)
   }
+  const toggleColorMode = () => {
+    setColorMode((prev) => prev === 'day' ? 'night' : 'day')
+  }
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, colorMode)
+    } catch (error) {
+      console.warn('Failed to save theme preference:', error)
+    }
+  }, [colorMode])
 
   return (
     <ThemeProvider colorMode={colorMode}>
@@ -83,7 +105,7 @@ export default function App() {
                     unsafeDisableTooltip
                     icon={() => colorMode === 'day' ? <MoonIcon size={28} /> : <SunIcon size={28} />}
                     variant="invisible"
-                    onClick={() => setColorMode(colorMode === 'day' ? 'night' : 'day')}
+                    onClick={toggleColorMode}
                     sx={{ p: 1 }}
                   />
                 </Box>
