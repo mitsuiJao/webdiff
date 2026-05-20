@@ -21,7 +21,7 @@ export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>(() => {
     try {
       const storedMode = window.localStorage.getItem(COLOR_MODE_STORAGE_KEY)
-      return storedMode === 'night' ? 'night' : 'day'
+      return storedMode === 'day' || storedMode === 'night' ? storedMode : 'day'
     } catch {
       return 'day'
     }
